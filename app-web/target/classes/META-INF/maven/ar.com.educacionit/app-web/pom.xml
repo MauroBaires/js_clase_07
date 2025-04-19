@@ -6,4 +6,17 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>app-web</artifactId>
+  
+  <dependencies>
+  
+  <dependency>
+	    <groupId>com.mysql</groupId>
+	    <artifactId>mysql-connector-j</artifactId>
+	    <version>9.2.0</version>
+</dependency>
+  
+  </dependencies>
+  
+  
+  
 </project> 
