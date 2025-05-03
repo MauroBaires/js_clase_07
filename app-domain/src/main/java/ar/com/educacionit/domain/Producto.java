@@ -1,4 +1,4 @@
-package ar.com.educacionit.entidades;
+package ar.com.educacionit.domain;
 
 public class Producto {
 

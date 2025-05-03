@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import ar.com.educacionit.exceptions.GenericException;
+
 public class AdministradorDeConexiones {
 
-	public static Connection obtenerConexion() throws Exception {
+	public static Connection obtenerConexion() throws GenericException {
 		
 		// URI o String de conexion
 		// 
@@ -25,7 +27,7 @@ public class AdministradorDeConexiones {
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			
-			throw e;
+			throw new GenericException ("No se ha podido obtener una conexion");
 		}
 		
 		

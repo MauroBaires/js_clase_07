@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import ar.com.educacionit.entidades.Producto;
+import ar.com.educacionit.domain.Producto;
 
 public class ConnectionMainTest {
 	

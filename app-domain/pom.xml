@@ -5,18 +5,5 @@
     <artifactId>app-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>app-web</artifactId>
-  
-  <dependencies>
-  
-	<dependency>
-		<groupId>ar.com.educacionit</groupId>
-		<artifactId>app-dao</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</dependency>
-  
-  </dependencies>
-  
-  
-  
-</project> 
+  <artifactId>app-domain</artifactId>
+</project>

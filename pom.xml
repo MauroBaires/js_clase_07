@@ -8,5 +8,7 @@
   <description>Contiene otros modulos</description>
   <modules>
   	<module>app-web</module>
+  	<module>app-domain</module>
+  	<module>app-dao</module>
   </modules>
 </project>
