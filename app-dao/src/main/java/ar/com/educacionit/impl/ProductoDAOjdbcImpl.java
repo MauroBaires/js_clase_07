@@ -72,7 +72,7 @@ public class ProductoDAOjdbcImpl implements ProductoDAO {
 	
 	}
 
-	// --------------- Collection ---------------------- //
+	// ----------------------Collection--------------------------------- //
 	
 	@Override
 	public Collection<Producto> findAll() throws GenericException {
@@ -113,7 +113,7 @@ Collection<Producto> productos = new ArrayList<Producto>();
 
 	
 	
-	// ---------------getById-----------------  //
+	// -----------------------getById----------------------------------  //
 	
 	@Override
 	public Producto getById(Long id) throws GenericException {
@@ -134,7 +134,9 @@ Collection<Producto> productos = new ArrayList<Producto>();
 			}
 			
 			statement.close();
- 					
+ 			
+			return producto;
+			
 		} catch (SQLException e) {
 			
 			throw new GenericException("No se ha podido obtener el producto", e);
@@ -148,12 +150,12 @@ Collection<Producto> productos = new ArrayList<Producto>();
 			}
 		}
 				
-		return null;
+		
 	}
 
 	
 	
-		// ------------------------------UPDATE ---------------------- //
+	// -----------------------UPDATE ----------------------------------- //
 	
 	
 	@Override
@@ -247,46 +249,83 @@ try {
 	}
 
 	
-	// ---------------------GET ByCodigo-------------------------------- //
-	
-
+	// -----------------------DELETE BY Codigo ----------------------------- //
 	
 	@Override
-	public Producto getByCodigo(String codigo) throws GenericException {
-Producto producto = this.getByCodigo(codigo);
+	public Producto deleteByCodigo(String codigo) throws GenericException {
+		Producto producto = this.getByCodigo(codigo);
 		
 		Connection connection = AdministradorDeConexiones.obtenerConexion();
 		
-		if(producto == null) {
-			throw new GenericException("No existe producto id:" + codigo, null);
-		}		
+		if (producto == null){
+			throw new GenericException("No existe el producto con el codigo: "+ codigo);
+		}
 		
-		String sql = "DELETE FROM PRODUCTOS WHERE codigo = ? ";
+		String sql = "DELETE FROM productos WHERE codigo = ?";
 		
 		try {
 			PreparedStatement statement = connection.prepareStatement(sql);
-			
 			statement.setString(1, codigo);
-			
 			int deleted = statement.executeUpdate();
-			
 			statement.close();
 			
-			if(deleted !=1) {
-				throw new GenericException("No se ha podido eliminar el producto id:" + codigo);
+			if (deleted != 1) {
+				throw new GenericException("No se ha podido eliminar el producto codigo: " + codigo);
 			}
-		}catch (SQLException e) {
+			
+			statement.close();
+		} catch (SQLException e) {
 			throw new GenericException("No se ha podido eliminar el producto", e);
 		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				throw new GenericException("Problema cerrando la conexion, verique en la base de datos",e);
+				
+				throw new GenericException("Problema, cerrando la conexion. Verifique en la BD" , e);
+			}
+			
+			
+		}
+		return producto;
+		
+	}
+	
+	// -----------------------GET ByCodigo------------------------------ //
+	
+	
+	@Override
+	public Producto getByCodigo(String codigo) throws GenericException {
+		
+		Connection connection = AdministradorDeConexiones.obtenerConexion();
+		
+		String sql = "SELECT * FROM productos WHERE codigo = '"+codigo+"'";
+		
+		try {
+			PreparedStatement statement =  connection.prepareStatement(sql);
+			
+			// statement.setString(1, codigo);
+			
+			ResultSet resultSet = statement.executeQuery();
+			
+			Producto producto = null; 
+					
+			if(resultSet.next()) { //encontró registros?
+				producto = productoFromResultSet(resultSet);
+			}
+			
+			statement.close();
+			
+			return producto;
+			
+		}catch (SQLException e) {
+			throw new GenericException("No se ha podido obtener el producto", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new GenericException("Problema cerrando la conexion, verifique en la base de datos",e);
 			}
 		}
-		
-		return producto;
-
 	}
 
 	
@@ -332,7 +371,7 @@ Producto producto = this.getByCodigo(codigo);
 		
 	}
 	
-//metodos privados 
+	//metodos privados 
 	
 private Producto productoFromResultSet(ResultSet rs) throws SQLException {
 		
@@ -349,10 +388,6 @@ private Producto productoFromResultSet(ResultSet rs) throws SQLException {
 		return producto;
 	}
 
-@Override
-public Producto deleteByCodigo(String codigo) throws GenericException {
-	// TODO Auto-generated method stub
-	return null;
-}
+
 
 }
