@@ -7,6 +7,8 @@
   </parent>
   <artifactId>app-web</artifactId>
   
+   <packaging>war</packaging>
+  
   <dependencies>
   
 	<dependency>
@@ -14,9 +16,26 @@
 		<artifactId>app-dao</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</dependency>
+  <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
+	<dependency>
+	    <groupId>javax.servlet.jsp</groupId>
+	    <artifactId>javax.servlet.jsp-api</artifactId>
+	    <version>2.3.3</version>
+	    <scope>provided</scope>
+	</dependency>
+ 
+	<!-- https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jsp-api</artifactId>
+	    <version>2.0</version>
+	    <scope>provided</scope>
+	</dependency>
   
   </dependencies>
   
-  
+  <build>
+  	<finalName>app-web</finalName>
+  </build>
   
 </project> 
