@@ -9,11 +9,11 @@ import ar.com.educacionit.domain.Producto;
 import ar.com.educacionit.impl.ProductoDAOjdbcImpl;
 import ar.com.educacionit.services.ProductoServices;
 
-public class ProductoServicesImp implements ProductoServices {
+public class ProductoServicesImpl implements ProductoServices {
 	
 	private ProductoDAO productoDao;
 	
-	public void ProductoServiceImp() {
+	public ProductoServicesImpl() {
 		this.productoDao = new ProductoDAOjdbcImpl();
 	}
 
@@ -36,8 +36,13 @@ public class ProductoServicesImp implements ProductoServices {
 
 	@Override
 	public Producto nuevoProducto(Producto producto) throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		try {
+			return this.productoDao.create(producto);
+		} catch (Exception e) {
+			throw new ServiceException("Error interno");
+		}
+		
 	}
 
 	@Override

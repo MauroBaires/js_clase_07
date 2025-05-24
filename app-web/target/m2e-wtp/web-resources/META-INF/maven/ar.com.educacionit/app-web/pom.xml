@@ -13,7 +13,7 @@
   
 	<dependency>
 		<groupId>ar.com.educacionit</groupId>
-		<artifactId>app-dao</artifactId>
+		<artifactId>app-services</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</dependency>
   <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
@@ -24,11 +24,11 @@
 	    <scope>provided</scope>
 	</dependency>
  
-	<!-- https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
+	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 	<dependency>
 	    <groupId>javax.servlet</groupId>
-	    <artifactId>jsp-api</artifactId>
-	    <version>2.0</version>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>4.0.1</version>
 	    <scope>provided</scope>
 	</dependency>
   

@@ -95,7 +95,7 @@ Collection<Producto> productos = new ArrayList<Producto>();
 			}
 			
 			statement.close();
-			
+			System.out.println(productos);
 			return productos;
 			
 		} catch (SQLException e) {
